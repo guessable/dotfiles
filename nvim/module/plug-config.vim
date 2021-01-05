@@ -149,7 +149,7 @@ au BufWrite *.cpp,*.h,*.hpp,*.py :Autoformat
 " coc
 "--------------------------------------------------
 let g:coc_global_extensions=[
-         \'coc-python',
+         \'coc-pyright',
          \'coc-r-lsp',
          \'coc-vimtex',
          \'coc-vimlsp',

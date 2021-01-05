@@ -1,20 +1,22 @@
 "======================================================
-"                   NEOVIM                            +
+"                     NEOVIM                          |
+"        __  ____   ___   ___     _____ __  __        |
+"       |  \/  \ \ / / \ | \ \   / /_ _|  \/  |       |
+"       | |\/| |\ V /|  \| |\ \ / / | || |\/| |       |
+"       | |  | | | | | |\  | \ V /  | || |  | |       |
+"       |_|  |_| |_| |_| \_|  \_/  |___|_|  |_|       |
 "------------------------------------------------------
 " Author:            |    CT                          |
 " Description:       |    C++ Python R LaTeX Markdown |
 " Last  Modified:    |    December 29 2020            |
 "======================================================
 
-"--------------------------------------------------
-" leader key
-"--------------------------------------------------
+" >>> leader key >>>
 let mapleader = "\<space>"
 let maplocalleader = "\<space>"
+" <<< leader key <<<
 
-"--------------------------------------------------
-" neovim behavior
-"--------------------------------------------------
+" >>> neovim behavior >>>
 set autochdir
 set wrap
 set noswapfile
@@ -82,7 +84,7 @@ autocmd Filetype python setlocal expandtab
 autocmd Filetype python setlocal autoindent
 autocmd Filetype python setlocal foldmethod=indent
 autocmd Filetype python setlocal foldlevel=99
-autocmd FileType python setlocal cc=79 " 79 character
+autocmd FileType python setlocal cc=79
 
 " c++
 autocmd Filetype cpp,h,hpp setlocal tabstop=3
@@ -94,10 +96,9 @@ autocmd FileType cpp,h,hpp setlocal cc=79
 
 runtime! module/vim-map.vim
 runtime! module/vim-func.vim
+" <<< neovim behavior <<<
 
-"--------------------------------------------------
-" plug
-"--------------------------------------------------
+" >>> plug-in >>>
 call plug#begin('~/.local/share/nvim/plugged')
 " UI
 Plug 'ryanoasis/vim-devicons'
@@ -138,8 +139,9 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'rhysd/accelerated-jk'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'junegunn/vim-slash'
+Plug 'lilydjwg/fcitx.vim'
 call plug#end()
 
 runtime! module/plug-ui.vim
 runtime! module/plug-config.vim
-
+" <<< plug-ui <<<
