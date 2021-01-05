@@ -1,0 +1,59 @@
+
+snippet	beg "file head" i
+#!/usr/bin/env python3
+# _*_ coding:utf-8 _*_
+# https://github.com/guessable
+
+$0
+endsnippet
+#====================
+
+snippet Class "python class" i
+
+class ${1:ClassName}():
+
+		"""
+		Docstring:
+		${2}
+		"""
+
+		def __init__(self,${3}):
+				$0
+endsnippet
+#=====================
+
+snippet ifname "if __name__==" i
+
+if __name__ == '__main__':
+	$0
+endsnippet
+#=====================
+
+snippet super "super" i
+super().__init__()
+$0
+
+endsnippet
+#====================
+
+snippet impn "import numpy as np" i
+import numpy as np
+$0
+
+endsnippet
+#=====================
+
+snippet impm "import matplotlib" i
+import matplotlib.pyplot as plt
+$0
+
+endsnippet
+#=====================
+
+snippet impd "import pandas as pd" i
+import pandas as pd
+$0
+
+endsnippet
+#=====================
+

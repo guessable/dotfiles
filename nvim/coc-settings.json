@@ -1,0 +1,112 @@
+{
+    "bookmark.sign": "",
+    "bookmark.signHl": "Todo",
+
+    "suggest.enablePreview": true,
+    "suggest.floatEnable": true,
+    "suggest.completionItemKindLabels": {
+        "class": "",
+        "color": "",
+        "constant": "",
+        "default": "",
+        "enum": "",
+        "enumMember": "",
+        "event": "鬒",
+        "field": "m",
+        "file": "",
+        "folder": "",
+        "function": "F",
+        "interface": "",
+        "keyword": "",
+        "method": "f",
+        "module": "",
+        "operator": "Ψ",
+        "property": "",
+        "reference": "r",
+        "snippet": "",
+        "struct": "פּ",
+        "text": "",
+        "typeParameter": "",
+        "unit": "",
+        "value": "",
+        "variable": ""
+    },
+
+    "git.enableGutters": true,
+    "git.addGBlameToBufferVar": false,
+    "git.addGBlameToVirtualText": true,
+    "git.showCommitInFloating":true,
+    "diagnostic.displayByAle": true,
+
+    "coc.source.vimtex.enable":true,
+
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    },
+    "explorer.width": 32,
+    "explorer.quitOnOpen": true,
+    "explorer.sources": [
+        {
+            "name": "buffer",
+            "expand": false
+        },
+        {
+            "name": "file",
+            "expand": true
+        }
+    ],
+    "explorer.file.column.indent.indentLine": true,
+    "explorer.file.showHiddenFiles": false,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.git.showIgnored": true,
+    "explorer.keyMappingMode": "none",
+    "explorer.buffer.showHiddenBuffers": false,
+
+    "explorer.keyMappings.global": {
+
+        "*": "toggleSelection",
+        "<tab>": "actionMenu",
+
+        "l": ["expandable?", "expand", "open"],
+        "<2-LeftMouse>": [
+            "expandable?",
+            ["expanded?", "collapse", "expand"],
+            "open"
+        ],
+        "o": ["expanded?", "collapse", "expand"],
+        "<cr>": ["expandable?", "cd", "open"],
+        "e": "open",
+        "s": "open:split",
+        "v": "open:vsplit",
+        "t": "open:tab",
+        "h": "gotoParent",
+
+        "c": "copyFile",
+        "x": "cutFile",
+        "p": "pasteFile",
+        "d": "delete",
+
+        "n": "addFile",
+        "N": "addDirectory",
+        "r": "rename",
+
+        ".": "toggleHidden",
+        "R": "refresh",
+
+        "?": "help",
+        "q": "quit",
+        "<esc>": "esc",
+
+        "f": "search"
+    },
+    "coc.preferences.extensionUpdateCheck": "weekly"
+}

@@ -1,0 +1,156 @@
+
+snippet beg "开始" i
+%! Tex progrom = xelatex
+%author:CT
+
+\documentclass[UTF8,a4paper,8pt,no-math]{article}
+\usepackage[top=3cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage{ctex}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{amsthm,mathrsfs}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{supertabular}
+\usepackage{xcolor}
+\usepackage{inconsolata}
+\usepackage{float}
+\usepackage{bbding}
+\usepackage{cases}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[colorlinks,
+            linkcolor=blue,
+            anchorcolor=blue,
+            citecolor=blue]{hyperref}
+\usepackage{url}
+
+\newtheorem{thm}{定理}[section]
+\newtheorem{defonation}{定义}[section]
+\newtheorem{lemma}{引理}[thm]
+\newtheorem{corollary}{推论}[thm]
+\numberwithin{equation}{section}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Times New Roman}
+
+\graphicspath{{./image/}}
+
+\begin{document}
+$0
+
+
+
+
+
+
+\end{document}
+endsnippet
+#=========================
+
+snippet begin "begin" i
+\begin{${1:env}}
+	$0
+\end{$1}
+endsnippet
+#=========================
+
+snippet 4 "$.$" i
+$ $0 $
+endsnippet
+#=========================
+
+snippet 44 "\[..\]" i
+\begin{equation}
+    $0
+\end{equation}
+endsnippet
+#=========================
+
+snippet sum "求和" i
+\sum${1:\limits}_{${2:i}=${3:0}}^{${4:n}}
+endsnippet
+#=========================
+
+snippet lim "极限" i
+\lim${1:\limits}_{${2:i}\to ${3:\infty}}
+endsnippet
+#=========================
+
+snippet int "积分" i
+\int_{${1:}}^{${2:}} $0 \,\mathrm{d}${3:x}
+endsnippet
+#=========================
+
+snippet tab "三线表" i
+\begin{tabular}{lll} %(需要宏包booktabs,lll表示三列，l表示左对齐，可选c,r)
+	\toprule
+	${1:title} & ${2:title} & ${3:title} \\\
+	\midrule
+	$0
+	\bottomrule
+\end{tabular}
+endsnippet
+#=========================
+
+snippet pmatrix "矩阵()" i
+\begin{pmatrix}
+	${1:a_{11}}&${2:a_{12}}&${3:\ldots}&${4:a_{1n}}\\\
+	${5:a_{21}}&${6:a_{22}}&${7:\ldots}&${8:a_{2n}}\\\
+	${9:\vdots}&${10:\vdots}&${11:\ddots}&${12:\vdots}\\\
+	${13:a_{n1}}&${14:a_{n2}}&${15:\ldots}&${16:a_{nn}}\\\
+\end{pmatrix}
+endsnippet
+#=========================
+
+snippet bmatrix "矩阵[]" i
+\begin{bmatrix}
+	${1:a_{11}}&${2:a_{12}}&${3:\ldots}&${4:a_{1n}}\\\
+	${5:a_{21}}&${6:a_{22}}&${7:\ldots}&${8:a_{2n}}\\\
+	${9:\vdots}&${10:\vdots}&${11:\ddots}&${12:\vdots}\\\
+	${13:a_{n1}}&${14:a_{n2}}&${15:\ldots}&${16:a_{nn}}\\\
+\end{bmatrix}
+endsnippet
+#=========================
+
+snippet Bmatrix "矩阵{}" i
+\begin{Bmatrix}
+	${1:a_{11}}&${2:a_{12}}&${3:\ldots}&${4:a_{1n}}\\\
+	${5:a_{21}}&${6:a_{22}}&${7:\ldots}&${8:a_{2n}}\\\
+	${9:\vdots}&${10:\vdots}&${11:\ddots}&${12:\vdots}\\\
+	${13:a_{n1}}&${14:a_{n2}}&${15:\ldots}&${16:a_{nn}}\\\
+\end{Bmatrix}
+endsnippet
+#=========================
+
+snippet vmatrix "矩阵| |" i
+\begin{vmatrix}
+	${1:a_{11}}&${2:a_{12}}&${3:\ldots}&${4:a_{1n}}\\\
+	${5:a_{21}}&${6:a_{22}}&${7:\ldots}&${8:a_{2n}}\\\
+	${9:\vdots}&${10:\vdots}&${11:\ddots}&${12:\vdots}\\\
+	${13:a_{n1}}&${14:a_{n2}}&${15:\ldots}&${16:a_{nn}}\\\
+\end{vmatrix}
+endsnippet
+#=========================
+
+snippet Vmatrix "矩阵|| ||" i
+\begin{Vmatrix}
+	${1:a_{11}}&${2:a_{12}}&${3:\ldots}&${4:a_{1n}}\\\
+	${5:a_{21}}&${6:a_{22}}&${7:\ldots}&${8:a_{2n}}\\\
+	${9:\vdots}&${10:\vdots}&${11:\ddots}&${12:\vdots}\\\
+	${13:a_{n1}}&${14:a_{n2}}&${15:\ldots}&${16:a_{nn}}\\\
+\end{Vmatrix}
+endsnippet
+#=========================
+
+snippet matrix "矩阵(无定界符)" i
+\begin{matrix}
+	${1:a_{11}}&${2:a_{12}}&${3:\ldots}&${4:a_{1n}}\\\
+	${5:a_{21}}&${6:a_{22}}&${7:\ldots}&${8:a_{2n}}\\\
+	${9:\vdots}&${10:\vdots}&${11:\ddots}&${12:\vdots}\\\
+	${13:a_{n1}}&${14:a_{n2}}&${15:\ldots}&${16:a_{nn}}\\\
+\end{matrix}
+endsnippet
+#=========================
+
