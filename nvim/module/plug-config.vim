@@ -35,7 +35,7 @@ let g:vista_default_executive = 'coc'
 let g:vista_ctags_cmd = {
          \ 'haskell': 'hasktags -x -o - -c',
          \ }
-let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#enable_icon = 0
 
 "--------------------------------------------------
 " undotree
@@ -53,26 +53,14 @@ nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
 
 "--------------------------------------------------
-" LeaderF
+" fzf
 "--------------------------------------------------
-let g:Lf_ShowDevIcons = 1
-let g:Lf_ShowHidden = 1
-let g:Lf_WindowHeight = 0.3
-let g:Lf_HideHelp = 1
-let g:Lf_UseCache = 0
-let g:Lf_ReverseOrder = 0
-let g:Lf_UseVersionControlTool = 0
-let g:Lf_IgnoreCurrentBufferName = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0",
-						\ 'right': "\ue0b2" }
-let g:Lf_CommandMap = {'<C-K>': ['<C-P>'], '<C-J>': ['<C-N>']}
-let g:Lf_StlColorscheme = 'one'
-nnoremap <silent> <leader>ff :LeaderfFile<CR>
-nnoremap <silent> <leader>fh :LeaderfMru<CR>
-nnoremap <silent> <leader>fw :Leaderf rg<CR>
-nnoremap <silent> <leader>fb :LeaderfBuffer<CR>
-nnoremap <silent> <leader>fc :LeaderfColorscheme<CR>
-nnoremap <leader>lf :LeaderfFile ~/<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fw :Ag<CR>
+nnoremap <leader>fh :History<CR>
+nnoremap <leader>fc :Colors<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fz :<C-u>Files ~/<CR>
 
 "--------------------------------------------------
 " markdown preview&vimtex
@@ -157,8 +145,7 @@ let g:coc_global_extensions=[
          \'coc-snippets',
          \'coc-yank',
          \'coc-bookmark',
-         \'coc-git',
-         \'coc-explorer'
+         \'coc-git'
          \]
 inoremap <silent><expr> <TAB>
          \ pumvisible() ? "\<C-n>" :
@@ -211,9 +198,6 @@ nnoremap <silent> <leader>mn :CocCommand bookmark.next<CR>
 nnoremap <silent> <leader>mc :CocCommand bookmark.clearForCurrentFile<CR>
 nnoremap <silent> <leader>ma :CocCommand bookmark.clearForAllFiles<CR>
 nnoremap <silent> <leader>ml :CocList bookmark<CR>
-
-"coc-explorer
-nnoremap <silent> <leader>o :CocCommand explorer --toggle<CR>
 
 "--------------------------------------------------
 " ale
