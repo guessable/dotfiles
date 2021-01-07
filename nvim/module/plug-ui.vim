@@ -124,7 +124,7 @@ function! LightlineReadonly()
 endfunctio
 " my message
 function! Buffer_logo()
-	return '𝓑 '
+	return ''
 endfunction
 function! Logo()
 	return ' CT'

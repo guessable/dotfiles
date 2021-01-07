@@ -1,7 +1,4 @@
 {
-    "bookmark.sign": "",
-    "bookmark.signHl": "Todo",
-
     "suggest.enablePreview": true,
     "suggest.floatEnable": true,
     "suggest.completionItemKindLabels": {

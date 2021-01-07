@@ -8,7 +8,7 @@
 "------------------------------------------------------
 " Author:            |    CT                          |
 " Description:       |    C++ Python R LaTeX Markdown |
-" Last  Modified:    |    December 29 2020            |
+" Last  Modified:    |    Jan. 7 2021                 |
 "======================================================
 
 " >>> leader key >>>
@@ -93,57 +93,154 @@ autocmd Filetype cpp,h,hpp setlocal cindent
 autocmd Filetype cpp,h,hpp setlocal shiftwidth=3
 autocmd Filetype cpp,h,hpp setlocal foldmethod=manual
 autocmd FileType cpp,h,hpp setlocal cc=79
-
-runtime! module/vim-map.vim
-runtime! module/vim-func.vim
 " <<< neovim behavior <<<
 
+" >>> vim-keymap >>>
+nnoremap ; :
+nnoremap <silent> <leader>fv :e $HOME/.config/nvim/init.vim<CR>
+nnoremap <silent> <leader>l1 :silent exec
+			\ '!zathura $HOME/.config/nvim/module/symbols.pdf &'<CR>
+nnoremap <silent> <leader>ip :tabnew<CR>:term ipython<CR> i
+vnoremap <C-c> "+y
+
+" save
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+
+" term
+noremap <leader>tv :vnew term://zsh<CR> i
+noremap <leader>th :new term://zsh<CR>:res -7<CR> i
+tnoremap <C-\> <C-\><C-N>
+tnoremap <silent> :q <C-\><C-N>:bd!<CR>
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+
+" cursor
+nnoremap J 7j
+nnoremap K 7k
+vnoremap J 7j
+vnoremap K 7k
+
+nnoremap <c-a> 0
+noremap <C-e> $
+
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <c-o> <Esc>o
+
+inoremap <M-f> <S-Right>
+inoremap <M-b> <S-Left>
+
+"windows
+noremap <c-o> <c-w>o
+noremap <c-h> <c-w>h
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
+
+nnoremap <Up> :resize +3<CR>
+nnoremap <Down> :resize -3<CR>
+" :vertical res +3<CR>
+
+" disable key
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+
+"tab page
+nnoremap <silent> <leader>tn :tabnew<CR>
+nnoremap <silent> <leader>tc :tabclose<CR>
+
+" buffer
+nnoremap <silent> <Left> :bp<CR>
+nnoremap <silent> <Right> :bn<CR>
+nnoremap <silent> <leader>bd :bd<CR>
+inoremap <silent> <Left> <esc>:bp<CR>a
+inoremap <silent> <Right> <esc>:bn<CR>a
+" >>> vim-keymap <<<
+
+" >>> vim-func >>>
+"CodeRun
+func! CodeRun()
+	if &filetype == 'cpp'
+		exec "w"
+		set splitbelow
+		exec "!g++ -std=c++14 % -Wall -o %:r"
+		:sp
+		:res -7
+		:term ./%:r
+	elseif &filetype == 'python'
+		exec "w"
+		set splitbelow
+		:sp
+		:res -7
+		:term python3 %
+	elseif &filetype == 'R'
+		exec "w"
+		set splitbelow
+		:sp
+		:res -7
+		:term R CMD BATCH %
+	elseif &filetype == 'tex'
+		exec "w"
+		:sp
+		:res -12
+		:term xelatex %
+	elseif &filetype == 'sh'
+		exec "w"
+		:sp
+		:res -12
+		:term sh ./%
+	elseif &filetype == 'markdown'
+		exec "w"
+		:MarkdownPreview
+	else
+		echom "filetype error"
+	endif
+endfunc
+noremap <silent> <leader>r :call CodeRun()<CR>
+
+"debug
+func! Debug()
+	exec "w"
+	if &filetype == 'python'
+		set splitbelow
+		:sp
+		:res -7
+		:term python3 -m pdb %
+	elseif &filetype == 'cpp'
+		set splitbelow
+		:sp
+		:res -7
+		:term gdb %:r
+	else
+		echom "filetype error"
+	endif
+endfunc
+nnoremap <silent> <leader>db :call Debug()<CR> i
+
+"Bibtex
+func! Bibtex()
+	if &filetype == 'tex'
+		exec "w"
+		:sp
+		:res -12
+		:term cp $HOME/.config/nvim/module/bibtex.sh ./ &&
+					\ sh ./bibtex.sh % %:r.aux && rm bibtex.sh
+	else
+		echom "filetype error,should be .tex"
+	endif
+endfunc
+nnoremap <silent> <leader>bi :call Bibtex()<CR>
+" <<< vim-func <<<
+
 " >>> plug-in >>>
-call plug#begin('~/.local/share/nvim/plugged')
-" UI
-Plug 'ryanoasis/vim-devicons'
-Plug 'glepnir/dashboard-nvim'
-Plug 'luochen1990/rainbow'
-Plug 'sheerun/vim-polyglot'
-Plug 'Yggdroot/indentLine'
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'joshdick/onedark.vim'
-
-" better coding
-Plug 'jiangmiao/auto-pairs'
-Plug 'liuchengxu/vista.vim'
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'easymotion/vim-easymotion'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'mbbill/undotree',{'on':'UndotreeToggle'}
-Plug 'Chiel92/vim-autoformat'
-Plug 'dense-analysis/ale'
-Plug 'iamcco/markdown-preview.nvim',{'for':'markdown'}
-Plug 'dhruvasagar/vim-table-mode',{'for':'markdown'}
-Plug 'lervag/vimtex', {'for':['tex','bib']}
-Plug 'tpope/vim-fugitive'
-
-" auto-completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" utils
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'kristijanhusak/defx-icons'
-Plug 'tpope/vim-surround'
-Plug 'gcmt/wildfire.vim'
-Plug 'machakann/vim-highlightedyank'
-Plug 'voldikss/vim-floaterm'
-Plug 'ianva/vim-youdao-translater'
-Plug 't9md/vim-choosewin'
-Plug 'farmergreg/vim-lastplace'
-Plug 'rhysd/accelerated-jk'
-Plug 'terryma/vim-smooth-scroll'
-Plug 'junegunn/vim-slash'
-Plug 'lilydjwg/fcitx.vim'
-call plug#end()
-
+runtime! module/plug-list.vim
 runtime! module/plug-ui.vim
 runtime! module/plug-config.vim
-" <<< plug-ui <<<
+" <<< plug-in <<<

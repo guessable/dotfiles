@@ -35,7 +35,7 @@ let g:vista_default_executive = 'coc'
 let g:vista_ctags_cmd = {
          \ 'haskell': 'hasktags -x -o - -c',
          \ }
-let g:vista#renderer#enable_icon = 0
+let g:vista#renderer#enable_icon = 1
 
 "--------------------------------------------------
 " undotree
@@ -94,14 +94,14 @@ let g:NERDCommentEmptyLines = 0
 let g:NERDToggleCheckAllLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
-" --------------------------------------------------
+"--------------------------------------------------
 " wildfire
 "--------------------------------------------------
 let g:wildfire_objects = ["i'", 'i"', "i)", "i]",
          \ "i}","i>", "ip", "it","iw"]
 map , <Plug>(wildfire-fuel)
 
-" --------------------------------------------------
+"--------------------------------------------------
 " vim-tab-mode
 "--------------------------------------------------
 nnoremap <leader>tm :TableModeToggle<CR>
@@ -134,6 +134,25 @@ nnoremap <silent> <leader>fo :Autoformat<CR>
 au BufWrite *.cpp,*.h,*.hpp,*.py :Autoformat
 
 "--------------------------------------------------
+" bookmark
+"--------------------------------------------------
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+nnoremap <silent> <leader>mm :BookmarkToggle<CR>
+nnoremap <silent> <leader>mn :BookmarkNext<CR>
+nnoremap <silent> <leader>mp :BookmarkPrev<CR>
+nnoremap <silent> <leader>mc :BookmarkClear<CR>
+nnoremap <silent> <leader>ma :BookmarkClearAll<CR>
+nnoremap <silent> <leader>ms :BookmarkShow<CR>
+
+"--------------------------------------------------
+" ale
+"--------------------------------------------------
+let g:ale_sign_error = '❯❯'
+let g:ale_sign_warning = '◉'
+nnoremap <silent> <leader>dc :ALEToggle<CR>
+
+"--------------------------------------------------
 " coc
 "--------------------------------------------------
 let g:coc_global_extensions=[
@@ -144,7 +163,6 @@ let g:coc_global_extensions=[
          \'coc-json',
          \'coc-snippets',
          \'coc-yank',
-         \'coc-bookmark',
          \'coc-git'
          \]
 inoremap <silent><expr> <TAB>
@@ -190,18 +208,3 @@ let g:coc_snippet_prev = '<c-k>'
 
 "coc yank
 nnoremap <silent> <leader>yk  :<C-u>CocList -A --normal yank<cr>
-
-"coc bookmark
-nnoremap <silent> <Leader>mm :CocCommand bookmark.toggle<CR>
-nnoremap <silent> <leader>mp :CocCommand bookmark.prev<CR>
-nnoremap <silent> <leader>mn :CocCommand bookmark.next<CR>
-nnoremap <silent> <leader>mc :CocCommand bookmark.clearForCurrentFile<CR>
-nnoremap <silent> <leader>ma :CocCommand bookmark.clearForAllFiles<CR>
-nnoremap <silent> <leader>ml :CocList bookmark<CR>
-
-"--------------------------------------------------
-" ale
-"--------------------------------------------------
-let g:ale_sign_error = '❯❯'
-let g:ale_sign_warning = '◉'
-nnoremap <silent> <leader>dc :ALEToggle<CR>
