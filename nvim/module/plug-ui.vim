@@ -91,14 +91,26 @@ let g:indentLine_fileType = ['python','cpp']
 let ayucolor="mirage"
 let g:dracula_italic=0
 
-colorscheme onedark
+" colorscheme onedark
 " colorscheme doom-one
 " colorscheme deus
 " colorscheme ayu
-" colorscheme dracula
+colorscheme dracula
 
 let g:lightline = {}
-let g:lightline.colorscheme = 'my_onedark'
+
+if(colors_name=='onedark')
+	let g:lightline.colorscheme = 'my_onedark'
+elseif(colors_name == 'doom-one')
+	let g:lightline.colorscheme = 'my_onedark'
+elseif(colors_name == 'deus')
+	let g:lightline.colorscheme = 'my_deus'
+elseif(colors_name == 'ayu')
+	let g:lightline.colorscheme = 'my_ayu'
+elseif(colors_name == 'dracula')
+	let g:lightline.colorscheme = 'my_dracula'
+endif
+
 let g:lightline.separator= {'left': '','right': '' }
 let g:lightline.subseparator={'left': ' ','right': ' ' }
 let g:lightline.active={
