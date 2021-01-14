@@ -148,7 +148,7 @@ nnoremap <silent> <leader>ms :BookmarkShow<CR>
 "--------------------------------------------------
 " ale
 "--------------------------------------------------
-let g:ale_sign_error = '❯❯'
+let g:ale_sign_error = '❯'
 let g:ale_sign_warning = '◉'
 nnoremap <silent> <leader>dc :ALEToggle<CR>
 

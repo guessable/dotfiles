@@ -8,7 +8,7 @@
 "------------------------------------------------------
 " Author:            |    CT                          |
 " Description:       |    C++ Python R LaTeX Markdown |
-" Last  Modified:    |    Jan. 7 2021                 |
+" Last  Modified:    |    Jan. 13 2021                |
 "======================================================
 
 " >>> leader key >>>
@@ -84,22 +84,31 @@ autocmd Filetype python setlocal expandtab
 autocmd Filetype python setlocal autoindent
 autocmd Filetype python setlocal foldmethod=indent
 autocmd Filetype python setlocal foldlevel=99
-autocmd FileType python setlocal cc=79
+autocmd FileType python,r setlocal cc=79
+
 
 " c++
-autocmd Filetype cpp,h,hpp setlocal tabstop=3
-autocmd Filetype cpp,h,hpp setlocal autoindent
-autocmd Filetype cpp,h,hpp setlocal cindent
-autocmd Filetype cpp,h,hpp setlocal shiftwidth=3
-autocmd Filetype cpp,h,hpp setlocal foldmethod=manual
-autocmd FileType cpp,h,hpp setlocal cc=79
+autocmd Filetype c,cpp,h,hpp setlocal tabstop=3
+autocmd Filetype c,cpp,h,hpp setlocal autoindent
+autocmd Filetype c,cpp,h,hpp setlocal cindent
+autocmd Filetype c,cpp,h,hpp setlocal shiftwidth=3
+autocmd Filetype c,cpp,h,hpp setlocal foldmethod=manual
+autocmd FileType c,cpp,h,hpp setlocal cc=79
+
+" last place
+if has("autocmd")
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+endif
 " <<< neovim behavior <<<
 
 " >>> vim-keymap >>>
 nnoremap ; :
 nnoremap <silent> <leader>fv :e $HOME/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>l1 :silent exec
-			\ '!zathura $HOME/.config/nvim/module/symbols.pdf &'<CR>
+			\ '!zathura $HOME/.config/nvim/tex/symbols.pdf &'<CR>
 nnoremap <silent> <leader>ip :tabnew<CR>:term ipython<CR> i
 vnoremap <C-c> "+y
 
@@ -124,7 +133,7 @@ vnoremap J 7j
 vnoremap K 7k
 
 nnoremap <c-a> 0
-noremap <C-e> $
+nnoremap <C-e> $
 
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
@@ -230,7 +239,7 @@ func! Bibtex()
 		exec "w"
 		:sp
 		:res -12
-		:term cp $HOME/.config/nvim/module/bibtex.sh ./ &&
+		:term cp $HOME/.config/nvim/tex/bibtex.sh ./ &&
 					\ sh ./bibtex.sh % %:r.aux && rm bibtex.sh
 	else
 		echom "filetype error,should be .tex"

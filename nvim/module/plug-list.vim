@@ -12,6 +12,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'joshdick/onedark.vim'
+Plug 'guessable/neovim-colors'
 
 " better coding
 Plug 'jiangmiao/auto-pairs'
@@ -27,6 +28,7 @@ Plug 'iamcco/markdown-preview.nvim',{'for':'markdown'}
 Plug 'dhruvasagar/vim-table-mode',{'for':'markdown'}
 Plug 'lervag/vimtex', {'for':['tex','bib']}
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 
 " auto-completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -34,14 +36,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " utils
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-icons'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'tpope/vim-surround'
+Plug 'voldikss/vim-floaterm'
 Plug 'gcmt/wildfire.vim'
 Plug 'machakann/vim-highlightedyank'
-Plug 'voldikss/vim-floaterm'
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'ianva/vim-youdao-translater'
 Plug 't9md/vim-choosewin'
-Plug 'farmergreg/vim-lastplace'
 Plug 'rhysd/accelerated-jk'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'junegunn/vim-slash'

@@ -3,6 +3,7 @@
 " dashboard
 "--------------------------------------------------
 nnoremap <silent> <leader>ds :Dashboard<CR>
+let g:dashboard_default_executive ='fzf'
 let g:dashboard_custom_header = [
 			\'                                 _.-~~.)                                     ',
 			\'           _.--~~~~~---....__  .` . .,`                                      ',
@@ -22,6 +23,7 @@ let g:dashboard_custom_header = [
 			\'',
 			\'e^iπ+1=0',
 			\]
+let g:dashboard_custom_footer = ['怀念过往 不畏将来']
 let g:dashboard_custom_section = {
 			\ 'a_find_history'        :{
 			\ 'description': ['  Recently opened files                 SPC f h'],
@@ -81,16 +83,19 @@ let g:rainbow_active = 1
 let g:highlightedyank_highlight_duration = 100
 let g:emoji_complete_overwrite_standard_keymaps = 0
 let g:indentLine_char_list = ['|', '┊', '┆', '¦' ]
-let g:indentLine_fileType = ['python']
+let g:indentLine_fileType = ['python','cpp']
 
 "--------------------------------------------------
 " theme&statusline&tabline
 "--------------------------------------------------
 let ayucolor="mirage"
+let g:dracula_italic=0
+
 colorscheme onedark
 " colorscheme doom-one
 " colorscheme deus
 " colorscheme ayu
+" colorscheme dracula
 
 let g:lightline = {}
 let g:lightline.colorscheme = 'my_onedark'
