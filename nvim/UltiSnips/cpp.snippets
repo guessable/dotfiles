@@ -3,9 +3,13 @@ snippet beg "file head" i
 * Author : CT
 * https://github.com/guessable
 *******************************************************/
+$0
+endsnippet
+#=====================
 
-#ifndef ${1:NAME}
-#define $1
+snippet def "ifndef" i
+#ifndef __${1:}__
+#define __$1__
 #include <iostream>
 $0
 
@@ -20,6 +24,12 @@ $0
 endsnippet
 #=====================
 
+snippet main "main func" i
+int main(){
+	$0
+}
+endsnippet
+
 snippet class "class" i
 class ${1:ClassName} {
 	$0
@@ -27,7 +37,7 @@ class ${1:ClassName} {
 endsnippet
 #======================
 
-snippet tem "template" i
+snippet temp "template" i
 template<typename $0
 endsnippet
 #======================
