@@ -3,7 +3,6 @@
 " dashboard
 "--------------------------------------------------
 nnoremap <silent> <leader>ds :Dashboard<CR>
-let g:dashboard_default_executive ='fzf'
 let g:dashboard_custom_header = [
 			\'                                 _.-~~.)                                     ',
 			\'           _.--~~~~~---....__  .` . .,`                                      ',
@@ -23,23 +22,22 @@ let g:dashboard_custom_header = [
 			\'',
 			\'e^iπ+1=0',
 			\]
-let g:dashboard_custom_footer = ['怀念过往 不畏将来']
 let g:dashboard_custom_section = {
 			\ 'a_find_history'        :{
 			\ 'description': ['  Recently opened files                 SPC f h'],
-			\ 'command': 'History'},
+			\ 'command': 'LeaderfMru'},
 			\ 'b_find_file'           :{
 			\ 'description': ['  Find File                             SPC f f'],
-			\ 'command': 'Files'},
+			\ 'command': 'LeaderfFile'},
 			\ 'd_find_buffer'         :{
 			\ 'description': ['  Recently buffers                      SPC f b'],
-			\ 'command': 'Buffers'},
+			\ 'command': 'LeaderfBuffer'},
 			\ 'e_find_word'           :{
 			\ 'description': ['  Find word                             SPC f w'],
-			\ 'command': 'Ag'},
+			\ 'command': 'Leaderf rg'},
 			\ 'f_change_colorscheme'  :{
 			\ 'description': ['  Change Colorscheme                    SPC f c'],
-			\ 'command': 'Colors'},
+			\ 'command': 'LeaderfColorscheme'},
 			\ 'g_open_personal'       :{
 			\ 'description': ['  Open Personal Config File             SPC f v'],
 			\ 'command': 'e $HOME/.config/nvim/init.vim'},
@@ -91,26 +89,15 @@ let g:indentLine_fileType = ['python','cpp']
 let ayucolor="mirage"
 let g:dracula_italic=0
 
-" colorscheme onedark
+colorscheme onedark
 " colorscheme doom-one
 " colorscheme deus
 " colorscheme ayu
-colorscheme dracula
+" colorscheme dracula
+" colorscheme oceanic_material
 
 let g:lightline = {}
-
-if(colors_name=='onedark')
-	let g:lightline.colorscheme = 'my_onedark'
-elseif(colors_name == 'doom-one')
-	let g:lightline.colorscheme = 'my_onedark'
-elseif(colors_name == 'deus')
-	let g:lightline.colorscheme = 'my_deus'
-elseif(colors_name == 'ayu')
-	let g:lightline.colorscheme = 'my_ayu'
-elseif(colors_name == 'dracula')
-	let g:lightline.colorscheme = 'my_dracula'
-endif
-
+let g:lightline.colorscheme = 'lightline'
 let g:lightline.separator= {'left': '','right': '' }
 let g:lightline.subseparator={'left': ' ','right': ' ' }
 let g:lightline.active={
@@ -194,82 +181,3 @@ nmap <Leader>d7 <Plug>lightline#bufferline#delete(7)
 nmap <Leader>d8 <Plug>lightline#bufferline#delete(8)
 nmap <Leader>d9 <Plug>lightline#bufferline#delete(9)
 nmap <Leader>d0 <Plug>lightline#bufferline#delete(10)
-
-"--------------------------------------------------
-" Defx
-"--------------------------------------------------
-nnoremap <silent> <leader>o :Defx -toggle ./<CR>
-autocmd BufWritePost * call defx#redraw()
-call defx#custom#option('_', {
-			\ 'resume': 1,
-			\ 'winwidth': 30,
-			\ 'split': 'vertical',
-			\ 'direction': 'topleft',
-			\ 'show_ignored_files': 0,
-			\ 'columns': 'mark:indent:git:icons:filename',
-			\ 'root_marker': '[in]: ',
-			\ })
-
-call defx#custom#column('git', {
-			\   'indicators': {
-			\     'Modified'  : '•',
-			\     'Staged'    : '✚',
-			\     'Untracked' : 'ᵁ',
-			\     'Renamed'   : '≫',
-			\     'Unmerged'  : '≠',
-			\     'Ignored'   : 'ⁱ',
-			\     'Deleted'   : '✖',
-			\     'Unknown'   : '⁇'
-			\   }
-			\ })
-
-" defx-icons plugin
-let g:defx_icons_column_length = 2
-let g:defx_icons_mark_icon = ''
-let g:defx_icons_parent_icon = ""
-
-call defx#custom#column('mark', { 'readonly_icon': '',
-			\ 'selected_icon': '' })
-
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-	nmap <silent><buffer><expr> h
-				\ defx#do_action('cd', ['..'])
-	nmap <silent><buffer><expr> l
-				\ defx#is_directory() ?
-				\ defx#do_action('open_directory') : defx#do_action('print')
-	nmap <silent><buffer><expr> o
-				\ defx#do_action('open_or_close_tree')
-
-	nmap <silent><buffer><expr> <cr>
-				\ defx#do_action('drop')
-	nmap <silent><buffer><expr> v
-				\ defx#do_action('open', 'vsplit')
-
-	nmap <silent><buffer><expr> c
-				\ defx#do_action('copy')
-	nmap <silent><buffer><expr> x
-				\ defx#do_action('move')
-	nmap <silent><buffer><expr> p
-				\ defx#do_action('paste')
-	nmap <silent><buffer><expr> d
-				\ defx#do_action('remove')
-	nmap <silent><buffer><expr> r
-				\ defx#do_action('rename')
-
-	nmap <silent><buffer><expr> N
-				\ defx#do_action('new_directory')
-	nmap <silent><buffer><expr> n
-				\ defx#do_action('new_file')
-
-	nmap <silent><buffer><expr> y
-				\ defx#do_action('yank_path')
-	nmap <silent><buffer><expr> .
-				\ defx#do_action('toggle_ignored_files')
-	nmap <silent><buffer><expr> q
-				\ defx#do_action('quit')
-	nmap <silent><buffer><expr> <space>
-				\ defx#do_action('toggle_select') . 'j'
-	nmap <silent><buffer><expr> *
-				\ defx#do_action('toggle_select_all')
-endfunction
