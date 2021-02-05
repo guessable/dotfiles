@@ -8,7 +8,7 @@
 "------------------------------------------------------
 " Author:            |    CT                          |
 " Description:       |    C++ Python R LaTeX Markdown |
-" Last  Modified:    |    Jan. 13 2021                |
+" Last  Modified:    |    Jan. 21 2021                |
 "======================================================
 
 " >>> leader key >>>
@@ -42,6 +42,7 @@ set smarttab
 set confirm
 set ignorecase
 
+set tabpagemax=7
 set backspace=2
 set clipboard=unnamed
 set cinoptions=g0,:0,N-s,(0
@@ -97,18 +98,17 @@ autocmd FileType c,cpp,h,hpp setlocal cc=79
 
 " last place
 if has("autocmd")
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+      autocmd BufReadPost *
+                        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                        \   exe "normal g`\"" |
+                        \ endif
 endif
 " <<< neovim behavior <<<
 
 " >>> vim-keymap >>>
-nnoremap ; :
 nnoremap <silent> <leader>fv :e $HOME/.config/nvim/init.vim<CR>
-nnoremap <silent> <leader>l1 :silent exec
-			\ '!zathura $HOME/.config/nvim/tex/symbols.pdf &'<CR>
+nnoremap <silent> <leader>fs :silent exec
+                  \ '!zathura $HOME/.config/nvim/tex/symbols.pdf &'<CR>
 nnoremap <silent> <leader>ip :tabnew<CR>:term ipython<CR> i
 vnoremap <C-c> "+y
 
@@ -127,15 +127,10 @@ tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
 
 " cursor
-nnoremap J 7j
-nnoremap K 7k
-vnoremap J 7j
-vnoremap K 7k
-
 nnoremap <c-a> 0
 nnoremap <C-e> $
 
-inoremap <C-a> <Home>
+inoremap <C-a> <Home> "emacs style
 inoremap <C-e> <End>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
@@ -153,97 +148,99 @@ noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
 
-nnoremap <Up> :resize +3<CR>
-nnoremap <Down> :resize -3<CR>
-" :vertical res +3<CR>
+nnoremap <silent> <Up> :resize +3<CR>
+nnoremap <silent> <Down> :resize -3<CR>
+nnoremap <silent> <Left> :vertical res +3<CR>
+nnoremap <silent> <Right> :vertical res -3<CR>
 
 " disable key
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
 
 "tab page
 nnoremap <silent> <leader>tn :tabnew<CR>
 nnoremap <silent> <leader>tc :tabclose<CR>
-
-" buffer
-nnoremap <silent> <Left> :bp<CR>
-nnoremap <silent> <Right> :bn<CR>
-nnoremap <silent> <leader>bd :bd<CR>
-inoremap <silent> <Left> <esc>:bp<CR>a
-inoremap <silent> <Right> <esc>:bn<CR>a
-" >>> vim-keymap <<<
+nnoremap <silent> <leader>1 1gt<CR>
+nnoremap <silent> <leader>2 2gt<CR>
+nnoremap <silent> <leader>3 3gt<CR>
+nnoremap <silent> <leader>4 4gt<CR>
+nnoremap <silent> <leader>5 5gt<CR>
+nnoremap <silent> <leader>6 6gt<CR>
+nnoremap <silent> <leader>7 7gt<CR>
 
 " >>> vim-func >>>
 "CodeRun
 func! CodeRun()
-	if &filetype == 'cpp'
-		exec "w"
-		set splitbelow
-		exec "!g++ -std=c++14 % -Wall -o %:r"
-		:sp
-		:res -7
-		:term ./%:r
-	elseif &filetype == 'python'
-		exec "w"
-		set splitbelow
-		:sp
-		:res -7
-		:term python3 %
-	elseif &filetype == 'R'
-		exec "w"
-		set splitbelow
-		:sp
-		:res -7
-		:term R CMD BATCH %
-	elseif &filetype == 'tex'
-		exec "w"
-		:sp
-		:res -12
-		:term xelatex %
-	elseif &filetype == 'sh'
-		exec "w"
-		:sp
-		:res -12
-		:term sh ./%
-	elseif &filetype == 'markdown'
-		exec "w"
-		:MarkdownPreview
-	else
-		echom "filetype error"
-	endif
+      if &filetype == 'cpp'
+            exec "w"
+            set splitbelow
+            exec "!g++ -std=c++14 % -Wall -o %:r"
+            :sp
+            :res -7
+            :term ./%:r
+      elseif &filetype == 'python'
+            exec "w"
+            set splitbelow
+            :sp
+            :res -7
+            :term python3 %
+      elseif &filetype == 'R'
+            exec "w"
+            set splitbelow
+            :sp
+            :res -7
+            :term R CMD BATCH %
+      elseif &filetype == 'tex'
+            exec "w"
+            :sp
+            :res -12
+            :term xelatex %
+      elseif &filetype == 'sh'
+            exec "w"
+            :sp
+            :res -12
+            :term sh ./%
+      elseif &filetype == 'markdown'
+            exec "w"
+            :MarkdownPreview
+      else
+            echom "filetype error"
+      endif
 endfunc
 noremap <silent> <leader>r :call CodeRun()<CR>
 
 "debug
 func! Debug()
-	exec "w"
-	if &filetype == 'python'
-		set splitbelow
-		:sp
-		:res -7
-		:term python3 -m pdb %
-	elseif &filetype == 'cpp'
-		set splitbelow
-		:sp
-		:res -7
-		:term gdb %:r
-	else
-		echom "filetype error"
-	endif
+      exec "w"
+      if &filetype == 'python'
+            set splitbelow
+            :sp
+            :res -7
+            :term python3 -m pdb %
+      elseif &filetype == 'cpp'
+            set splitbelow
+            :sp
+            :res -7
+            :term gdb %:r
+      else
+            echom "filetype error"
+      endif
 endfunc
 nnoremap <silent> <leader>db :call Debug()<CR> i
 
 "Bibtex
 func! Bibtex()
-	if &filetype == 'tex'
-		exec "w"
-		:sp
-		:res -12
-		:term cp $HOME/.config/nvim/tex/bibtex.sh ./ &&
-					\ sh ./bibtex.sh % %:r.aux && rm bibtex.sh
-	else
-		echom "filetype error,should be .tex"
-	endif
+      if &filetype == 'tex'
+            exec "w"
+            :sp
+            :res -12
+            :term cp $HOME/.config/nvim/tex/bibtex.sh ./ &&
+                              \ sh ./bibtex.sh % %:r.aux && rm bibtex.sh
+      else
+            echom "filetype error,should be .tex"
+      endif
 endfunc
 nnoremap <silent> <leader>bi :call Bibtex()<CR>
 " <<< vim-func <<<

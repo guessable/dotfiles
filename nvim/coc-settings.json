@@ -1,5 +1,6 @@
 {
-	"suggest.minTriggerInputLength": 1,
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "suggest.minTriggerInputLength": 1,
     "suggest.enablePreview": true,
     "suggest.floatEnable": true,
     "suggest.completionItemKindLabels": {
@@ -50,5 +51,58 @@
             }
         }
     },
-    "coc.preferences.extensionUpdateCheck": "weekly"
+
+    "explorer.width": 28,
+    "explorer.quitOnOpen": true,
+    "explorer.sources": [
+        {
+            "name": "buffer",
+            "expand": false
+        },
+        {
+            "name": "file",
+            "expand": true
+        }
+    ],
+
+    "explorer.file.column.indent.indentLine": true,
+    "explorer.file.showHiddenFiles": false,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.keyMappingMode": "none",
+    "explorer.buffer.showHiddenBuffers": false,
+
+    "explorer.keyMappings.global": {
+        "i": false,
+
+        "h": ["wait", "gotoParent"],
+        "l": ["wait", "open"],
+
+        "o": ["wait", "expanded?", "collapse", "expand"],
+        "<cr>": ["wait", "expandable?", "cd", "open"],
+
+        "s": "open:split",
+        "v": "open:vsplit",
+        "t": "open:tab",
+
+        "yy": "copyFilepath",
+        "yn": "copyFilename",
+        "c": "copyFile",
+        "x": "cutFile",
+        "p": "pasteFile",
+        "d": "delete",
+
+        "n": "addFile",
+        "N": "addDirectory",
+        "r": "rename",
+
+        ".": "toggleHidden",
+        "R": "refresh",
+
+        "?": "help",
+        "q": "quit",
+        "<esc>": "esc",
+
+        "f": "search",
+        "b": "gotoSource:buffer"
+    }
 }

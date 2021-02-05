@@ -58,7 +58,7 @@ noremap <leader>yd :<C-u>Yde<CR>
 let g:Lf_CommandMap = {'<C-K>': ['<C-P>'], '<C-J>': ['<C-N>']}
 let g:Lf_ShowHidden = 1
 let g:Lf_WindowPosition = 'bottom' "popup
-let g:Lf_WindowHeight = 0.3
+let g:Lf_WindowHeight = 0.18
 let g:Lf_StlSeparator = { 'left': "\ue0b0",
          \ 'right': "\ue0b2"}
 nnoremap <silent> <leader>ff :LeaderfFile<CR>
@@ -69,7 +69,7 @@ nnoremap <silent> <leader>fw :Leaderf rg<CR>
 nnoremap <silent> <leader>lf :<C-U>LeaderfFile ~/<CR>
 
 "--------------------------------------------------
-" markdown preview&vimtex
+" markdown preview && vimtex
 "--------------------------------------------------
 let g:mkdp_auto_start = 0
 let g:mkdp_preview_options = {
@@ -216,5 +216,5 @@ let g:coc_snippet_prev = '<c-k>'
 "coc yank
 nnoremap <silent> <leader>yk  :<C-u>CocList -A --normal yank<cr>
 
-" coc-explorer
-nnoremap <silent> <space>o :CocCommand explorer --toggle<CR>
+" coc explorer
+nnoremap <silent> <leader>o :CocCommand explorer --toggle<CR>
