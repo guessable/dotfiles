@@ -20,8 +20,8 @@ let g:dashboard_custom_header = [
 			\'                . __ ..                   ~-               ~~_. (  `         ',
 			\'  )`. _ _               `-       ..  - .    . - ~ ~ .    \    ~-` ` `  `. _  ',
 			\'',
-			\'e^iπ+1=0',
 			\]
+let g:dashboard_custom_footer = ['e^(iπ) + 1 = 0     --by Leonhard Euler']
 let g:dashboard_custom_section = {
 			\ 'a_find_history'        :{
 			\ 'description': ['  Recently opened files                 SPC f h'],
