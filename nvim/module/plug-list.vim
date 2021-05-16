@@ -7,9 +7,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'glepnir/dashboard-nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'luochen1990/rainbow'
+Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine'
 Plug 'itchyny/lightline.vim'
 
+" themes
 Plug 'joshdick/onedark.vim'
 Plug 'guessable/neovim-colors'
 
@@ -28,21 +30,17 @@ Plug 'tpope/vim-surround'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Markdown && Tex
-Plug 'iamcco/markdown-preview.nvim',{'for':'markdown'}
+" markdown
+Plug 'iamcco/markdown-preview.nvim', {'for':'markdown'}
 Plug 'dhruvasagar/vim-table-mode',{'for':'markdown'}
-Plug 'lervag/vimtex'
 
 " others
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-Plug 'voldikss/vim-floaterm'
+Plug 'Yggdroot/LeaderF', {'do':':LeaderfInstallCExtension'}
 Plug 'gcmt/wildfire.vim'
-Plug 'machakann/vim-highlightedyank'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'ianva/vim-youdao-translater'
 Plug 't9md/vim-choosewin'
 Plug 'rhysd/accelerated-jk'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'junegunn/vim-slash'
-Plug 'lilydjwg/fcitx.vim'
 call plug#end()

@@ -103,13 +103,33 @@ let g:lightline.colorscheme = 'lightline'
 let g:lightline.separator= {'left': '','right': '' }
 let g:lightline.subseparator={'left': ' ','right': ' ' }
 let g:lightline.active={
-			\   'left': [ [ 'mode', 'paste' ],['fugitive'],['readonly']],
+			\   'left': [ [ 'mode', 'paste'],['fugitive'],['readonly']],
 			\   'right': [[ 'syntastic', 'lineinfo' ], [ 'percent' ],
 			\            [ 'filetype','fileencoding'] ]
 			\ }
 " tabline
 let g:lightline.tabline = {'left': [['logo'],['separator'],['tabs']],
 			\ 'right': [['fileformat']]}
+let g:lightline.tab = {
+	\ 'active': [ 'tabnum', 'filename', 'modified' ],
+	\ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
+let g:lightline.tab_component_function = {
+			\ 'modified':'TablineModified',
+			\ 'filename':'TablineFilename'}
+
+" modified
+function! TablineModified(n) abort
+  let winnr = tabpagewinnr(a:n)
+  return gettabwinvar(a:n, winnr, '&modified') ? '✭' : gettabwinvar(a:n, winnr, '&modifiable') ? '' : '-'
+endfunction
+
+" filename
+function! TablineFilename(n) abort
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let _ = expand('#'.buflist[winnr - 1].':t')
+  return _ !=# '' ? _ : ''
+endfunction
 
 " component_function
 let g:lightline.component_function={
@@ -118,6 +138,7 @@ let g:lightline.component_function={
 			\ 'filetype': 'MyFiletype',
 			\ 'fileformat': 'MyFileformat',
 			\ 'logo':'Logo'}
+
 " Fugitvie
 function! LightlineFugitive()
 	if exists('*FugitiveHead')
@@ -144,3 +165,4 @@ endfunction
 function! Logo()
 	return ' CT'
 endfunction
+

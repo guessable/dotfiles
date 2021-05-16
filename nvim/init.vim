@@ -7,8 +7,8 @@
 "       |_|  |_| |_| |_| \_|  \_/  |___|_|  |_|       |
 "------------------------------------------------------
 " Author:            |    CT                          |
-" Description:       |    C++ Python R LaTeX Markdown |
-" Last  Modified:    |    Jan. 21 2021                |
+" Description:       |    C++ Python                  |
+" Last  Modified:    |    May. 16 2021                |
 "======================================================
 
 " >>> leader key >>>
@@ -85,7 +85,7 @@ autocmd Filetype python setlocal expandtab
 autocmd Filetype python setlocal autoindent
 autocmd Filetype python setlocal foldmethod=indent
 autocmd Filetype python setlocal foldlevel=99
-autocmd FileType python,r setlocal cc=79
+autocmd FileType python setlocal cc=79
 
 
 " c++
@@ -107,8 +107,6 @@ endif
 
 " >>> vim-keymap >>>
 nnoremap <silent> <leader>fv :e $HOME/.config/nvim/init.vim<CR>
-nnoremap <silent> <leader>fs :silent exec
-                  \ '!zathura $HOME/.config/nvim/tex/symbols.pdf &'<CR>
 nnoremap <silent> <leader>ip :tabnew<CR>:term ipython<CR> i
 vnoremap <C-c> "+y
 
@@ -130,7 +128,8 @@ tnoremap <C-l> <C-\><C-N><C-w>l
 nnoremap <c-a> 0
 nnoremap <C-e> $
 
-inoremap <C-a> <Home> "emacs style
+" emacs style
+inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-p> <Up>
 inoremap <C-n> <Down>
@@ -186,25 +185,14 @@ func! CodeRun()
             :sp
             :res -7
             :term python3 %
-      elseif &filetype == 'R'
+      elseif &filetype == 'markdown'
             exec "w"
-            set splitbelow
-            :sp
-            :res -7
-            :term R CMD BATCH %
-      elseif &filetype == 'tex'
-            exec "w"
-            :sp
-            :res -12
-            :term xelatex %
+            :MarkdownPreviewToggle
       elseif &filetype == 'sh'
             exec "w"
             :sp
             :res -12
             :term sh ./%
-      elseif &filetype == 'markdown'
-            exec "w"
-            :MarkdownPreview
       else
             echom "filetype error"
       endif
@@ -228,21 +216,7 @@ func! Debug()
             echom "filetype error"
       endif
 endfunc
-nnoremap <silent> <leader>db :call Debug()<CR> i
-
-"Bibtex
-func! Bibtex()
-      if &filetype == 'tex'
-            exec "w"
-            :sp
-            :res -12
-            :term cp $HOME/.config/nvim/tex/bibtex.sh ./ &&
-                              \ sh ./bibtex.sh % %:r.aux && rm bibtex.sh
-      else
-            echom "filetype error,should be .tex"
-      endif
-endfunc
-nnoremap <silent> <leader>bi :call Bibtex()<CR>
+nnoremap <silent> <leader>db :call Debug()<CR>
 " <<< vim-func <<<
 
 " >>> plug-in >>>

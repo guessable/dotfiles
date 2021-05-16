@@ -19,14 +19,6 @@ nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
 "--------------------------------------------------
-" float term
-"--------------------------------------------------
-let g:floaterm_width = 0.7
-let g:floaterm_height = 0.7
-nnoremap <leader>fn :FloatermNew<CR>
-nnoremap <leader>fr :FloatermNew ranger<CR>
-
-"--------------------------------------------------
 " tag
 "--------------------------------------------------
 nnoremap <silent> <leader>tg :Vista!!<CR>
@@ -53,6 +45,24 @@ nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
 
 "--------------------------------------------------
+" markdown preview && tab-mode
+"--------------------------------------------------
+let g:mkdp_preview_options = {
+         \ 'mkit': {},
+         \ 'katex': {},
+         \ 'uml': {},
+         \ 'maid': {},
+         \ 'disable_sync_scroll': 0,
+         \ 'sync_scroll_type': 'middle',
+         \ 'hide_yaml_meta': 1,
+         \ 'sequence_diagrams': {},
+         \ 'flowchart_diagrams': {}
+         \ }
+let g:mkdp_page_title = '「${name}」'
+
+nnoremap <leader>tm :TableModeToggle<CR>
+
+"--------------------------------------------------
 " LeaderF
 "--------------------------------------------------
 let g:Lf_CommandMap = {'<C-K>': ['<C-P>'], '<C-J>': ['<C-N>']}
@@ -67,28 +77,6 @@ nnoremap <silent> <leader>fb :LeaderfBuffer<CR>
 nnoremap <silent> <leader>fc :LeaderfColorscheme<CR>
 nnoremap <silent> <leader>fw :Leaderf rg<CR>
 nnoremap <silent> <leader>lf :<C-U>LeaderfFile ~/<CR>
-
-"--------------------------------------------------
-" markdown preview && vimtex
-"--------------------------------------------------
-let g:mkdp_auto_start = 0
-let g:mkdp_preview_options = {
-         \ 'mkit': {},
-         \ 'katex': {},
-         \ 'uml': {},
-         \ 'maid': {},
-         \ 'disable_sync_scroll': 0,
-         \ 'sync_scroll_type': 'middle',
-         \ 'hide_yaml_meta': 1,
-         \ 'sequence_diagrams': {},
-         \ 'flowchart_diagrams': {}
-         \ }
-let g:mkdp_page_title = '「${name}」'
-let g:tex_flavor='latex'
-let g:vimtex_view_general_viewer='zathura'
-let g:vimtex_quickfix_mode=0
-" set conceallevel=1
-" let g:tex_conceal='abdmg'
 
 "--------------------------------------------------
 " nerdocmmenter
@@ -106,11 +94,6 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:wildfire_objects = ["i'", 'i"', "i)", "i]",
          \ "i}","i>", "ip", "it","iw"]
 map , <Plug>(wildfire-fuel)
-
-"--------------------------------------------------
-" vim-tab-mode
-"--------------------------------------------------
-nnoremap <leader>tm :TableModeToggle<CR>
 
 "--------------------------------------------------
 " easymotion
@@ -163,8 +146,6 @@ nnoremap <silent> <leader>dc :ALEToggle<CR>
 "--------------------------------------------------
 let g:coc_global_extensions=[
          \'coc-pyright',
-         \'coc-r-lsp',
-         \'coc-vimtex',
          \'coc-vimlsp',
          \'coc-json',
          \'coc-snippets',
@@ -216,5 +197,5 @@ let g:coc_snippet_prev = '<c-k>'
 "coc yank
 nnoremap <silent> <leader>yk  :<C-u>CocList -A --normal yank<cr>
 
-" coc explorer
+"coc-explorer
 nnoremap <silent> <leader>o :CocCommand explorer --toggle<CR>
